@@ -5,12 +5,7 @@
 
 /*
 	This program is a part of the QNU project.
-	      QNU rvl version 2.0 (2026-03)
-
-	      usage:
-
-	      rvl [-m N]
-	      - Repeats generation N times.
+	      QNU rvl version 1.0.1 (2026-03)
 */
 
 const char *BIG[] = {
@@ -34,28 +29,20 @@ void RVLY(const char *arr[], int count, int size) {
     }
 }
 
-int main(int argc, char *argv[]) {
-    int __MAX = -1;
+int main() {
+    srand(time(NULL));
 
     int SIZE_BIG = sizeof(BIG)/sizeof(BIG[0]);
     int SIZE_SMA = sizeof(SMA)/sizeof(SMA[0]);
-    for(int i = 1; i < argc; i++) {
-	    if(strcmp(argv[i], "-m") == 0 && i+1 < argc) {
-		    __MAX = atoi(argv[i+1]);
-		    if(__MAX <= 0) __MAX = -1;
-		    i++;
-	    }
-    }
-    srand(time(NULL));
-    int __COUNT = 0;
-    while(__MAX == -1 || __COUNT < __MAX) {
+
+    while(1) {
         RVLY(BIG, 3, SIZE_BIG);
         printf(" ");
         RVLY(SMA, 5, SIZE_SMA);
         printf(" ");
         RVLY(SMA, 10, SIZE_SMA);
         printf(".\n");
-	__COUNT++;
     }
+
     return 0;
 }
